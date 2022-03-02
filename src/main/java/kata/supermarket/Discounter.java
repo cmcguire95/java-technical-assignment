@@ -5,11 +5,21 @@ import java.util.List;
 
 public class Discounter {
     public BigDecimal calculateDiscount(List<Item> items) {
+        BigDecimal totalDiscount = BigDecimal.ZERO;
         for (Item item : items) {
-            for (Discount discount : item.discounts()) {
-                discount.apply(item);
+            totalDiscount = totalDiscount.add(getBiggestDiscount(item));
+        }
+        return totalDiscount;
+    }
+
+    private BigDecimal getBiggestDiscount(Item item) {
+        BigDecimal biggestDiscount = BigDecimal.ZERO;
+        for (Discount discount : item.discounts()) {
+            BigDecimal newDiscount = discount.apply(item);
+            if (biggestDiscount.compareTo(newDiscount) < 0) {
+                biggestDiscount = newDiscount;
             }
         }
-        return BigDecimal.ZERO;
+        return biggestDiscount;
     }
 }
