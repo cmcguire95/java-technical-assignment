@@ -21,4 +21,8 @@ public class ItemByWeight implements Item {
     public List<Discount> discounts() {
         return product.getAvailableDiscounts();
     }
+
+    public BigDecimal quantityWeightOrUnits() {
+        return weightInKilos;
+    }
 }

@@ -20,4 +20,8 @@ public class ItemByUnit implements Item {
     public List<Discount> discounts() {
         return product.getAvailableDiscounts();
     }
+
+    public BigDecimal quantityWeightOrUnits() {
+        return BigDecimal.valueOf(quantity);
+    }
 }
