@@ -15,6 +15,10 @@ public class Product {
     }
 
     public Item oneOf() {
-        return new ItemByUnit(this);
+        return new ItemByUnit(this, 1);
+    }
+
+    public Item multipleOf(int quantity) {
+        return new ItemByUnit(this, quantity);
     }
 }
