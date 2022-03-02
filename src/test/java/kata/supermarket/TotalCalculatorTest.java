@@ -18,7 +18,7 @@ class TotalCalculatorTest {
     private final BigDecimal TWO = BigDecimal.valueOf(2).setScale(2, RoundingMode.HALF_UP);
 
     @Test
-    void totalCalculatorShouldSubtractTheDicountsFromDiscounter() {
+    void totalCalculatorShouldSubtractTheDiscountsFromDiscounter() {
         List<Item> items = new ArrayList<>();
         Discounter discounter = mock(Discounter.class);
         Mockito.when(discounter.calculateDiscount(any())).thenReturn(TWO);
