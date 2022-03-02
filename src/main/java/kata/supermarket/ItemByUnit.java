@@ -1,6 +1,7 @@
 package kata.supermarket;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class ItemByUnit implements Item {
 
@@ -14,5 +15,9 @@ public class ItemByUnit implements Item {
 
     public BigDecimal price() {
         return product.pricePerUnit().multiply(BigDecimal.valueOf(quantity));
+    }
+
+    public List<Discount> discounts() {
+        return product.getAvailableDiscounts();
     }
 }
