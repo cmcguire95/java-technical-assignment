@@ -21,6 +21,6 @@ public class Basket {
     }
 
     public BigDecimal total() {
-        return new TotalCalculator(items()).calculate();
+        return new TotalCalculator(items(), new Discounter()).calculate();
     }
 }
