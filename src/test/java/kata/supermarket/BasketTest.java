@@ -73,7 +73,7 @@ class BasketTest {
     }
 
     private static WeighedProduct aKiloOfAmericanSweets() {
-        return new WeighedProduct(new BigDecimal("4.99"));
+        return new WeighedProduct(new BigDecimal("4.99"), Collections.emptyList());
     }
 
     private static Item twoFiftyGramsOfAmericanSweets() {
@@ -81,7 +81,7 @@ class BasketTest {
     }
 
     private static WeighedProduct aKiloOfPickAndMix() {
-        return new WeighedProduct(new BigDecimal("2.99"));
+        return new WeighedProduct(new BigDecimal("2.99"), Collections.emptyList());
     }
 
     private static Item twoHundredGramsOfPickAndMix() {

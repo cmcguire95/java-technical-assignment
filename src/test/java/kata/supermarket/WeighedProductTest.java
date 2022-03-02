@@ -1,20 +1,25 @@
 package kata.supermarket;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class WeighedProductTest {
 
     @ParameterizedTest
     @MethodSource
     void itemFromWeighedProductHasExpectedUnitPrice(String pricePerKilo, String weightInKilos, String expectedPrice) {
-        final WeighedProduct weighedProduct = new WeighedProduct(new BigDecimal(pricePerKilo));
+        final WeighedProduct weighedProduct = new WeighedProduct(new BigDecimal(pricePerKilo), Collections.emptyList());
         final Item weighedItem = weighedProduct.weighing(new BigDecimal(weightInKilos));
         assertEquals(new BigDecimal(expectedPrice), weighedItem.price());
     }
@@ -28,4 +33,12 @@ class WeighedProductTest {
         );
     }
 
+    @Test
+    void weighedProductsCanStoreAndReturnDiscounts() {
+        List<Discount> discounts = Arrays.asList(new BogofDiscount(), new ThreeForTwoDiscount());
+        List<Discount> availableDiscounts = new WeighedProduct(BigDecimal.ONE, discounts).getAvailableDiscounts();
+        assertEquals(2, availableDiscounts.size());
+        assertTrue(availableDiscounts.get(0) instanceof BogofDiscount);
+        assertTrue(availableDiscounts.get(1) instanceof ThreeForTwoDiscount);
+    }
 }
