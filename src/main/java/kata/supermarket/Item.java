@@ -9,4 +9,6 @@ public interface Item {
     List<Discount> discounts();
 
     BigDecimal quantityWeightOrUnits();
+
+    BigDecimal pricePerUnitOrKg();
 }

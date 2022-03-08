@@ -25,4 +25,8 @@ public class ItemByWeight implements Item {
     public BigDecimal quantityWeightOrUnits() {
         return weightInKilos;
     }
+
+    public BigDecimal pricePerUnitOrKg() {
+        return product.pricePerKilo();
+    }
 }
