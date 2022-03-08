@@ -31,7 +31,8 @@ class BasketTest {
                 aSingleItemPricedByWeight(),
                 multipleItemsPricedByWeight(),
                 multipleUnitsOfASingleItemPricedPerUnit(),
-                multipleUnitsOfASingleItemPricedPerUnitWithDiscounts()
+                multipleUnitsOfASingleItemPricedPerUnitWithDiscounts(),
+                aWeighedItemWithHalfPriceKiloDiscount()
         );
     }
 
@@ -60,6 +61,10 @@ class BasketTest {
         return Arguments.of("multiple units of a single item priced per unit with discounts", "3.10", Collections.singleton(threePacksOfDigestivesWithDiscounts()));
     }
 
+    private static Arguments aWeighedItemWithHalfPriceKiloDiscount() {
+        return Arguments.of("a weighed item with half price kilo discount", "2.50", Collections.singleton(aKiloOfAmericanSweetsWithHalfPriceKilo()));
+    }
+
     private static Arguments noItems() {
         return Arguments.of("no items", "0.00", Collections.emptyList());
     }
@@ -82,6 +87,10 @@ class BasketTest {
 
     private static WeighedProduct aKiloOfAmericanSweets() {
         return new WeighedProduct(new BigDecimal("4.99"), Collections.emptyList());
+    }
+
+    private static Item aKiloOfAmericanSweetsWithHalfPriceKilo() {
+        return new WeighedProduct(new BigDecimal("5"), Collections.singletonList(new HalfPriceKilo())).weighing(BigDecimal.ONE);
     }
 
     private static Item twoFiftyGramsOfAmericanSweets() {
